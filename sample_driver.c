@@ -16,7 +16,7 @@ static int __init sample_module_init(void){/*__init macro makes the space for th
 
 	return 0;
 }
-static void __exit sample_module_exit(void){/*__exit macro makes the space for the base kernal to load*/
+static void __exit sample_module_exit(void){/*__exit macro frees the space for the base kernal to load*/
 
 	printk(KERN_INFO"sample module exit");
 	return;
