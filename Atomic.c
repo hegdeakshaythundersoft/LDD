@@ -129,8 +129,8 @@ static int __init my_simpledriver_init(void)
 		printk(KERN_INFO"unable to create the thread");
 		
 	}
-#if 0
-	char_thread1 = kthread_run(my_thread_fun1,NULL,"my char thread1");
+
+	char_thread1 = kthread_run(my_thread_fun,NULL,"my char thread1");
 	if(char_thread1)
 	{
 		printk(KERN_INFO" create the thread1");
@@ -140,7 +140,7 @@ static int __init my_simpledriver_init(void)
 		printk(KERN_INFO"unable to create the thread");
 		
 	}
-#endif
+
 	return 0;
 
 }
@@ -479,6 +479,393 @@ akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ dmesg
 [ 3261.427856] TEST AND CLEAR    1
 [ 3261.427862] TEST AND CLEAR      4
 [ 3261.427867] TEST BIT    1
+
+
+
+************************For 2 threads*******************************
+
+
+
+
+[  352.674604] SET BIT      1
+[  352.674605] SET BIT      3
+[  352.674606] SET BIT      7
+[  352.674606] CLEAR BIT      5
+[  352.674607] CHANGE BIT      4
+[  352.674608] TEST AND SET    0
+[  352.674609] TEST AND SET      6
+[  352.674609] TEST AND CLEAR    1
+[  352.674610] TEST AND CLEAR      4
+[  352.674611] TEST BIT    1
+[  353.688335] my_thread_fun after inc  20
+[  353.688337] my_thread_fun after inc  21
+[  353.688350] my_thread_fun after add   35
+[  353.688351] my_thread_fun after add   49
+[  353.688357] my_thread_fun after sub   47
+[  353.688360] my_thread_fun after sub   45
+[  353.688363] my_thread_fun after dec   44
+[  353.688369] my_thread_fun after dec   43
+[  353.688370] my_thread_fun after set    14
+[  353.688375] my_thread_fun after set    14
+[  353.688377] my_thread_fun after sub and test    0
+[  353.688383] my_thread_fun after sub and test    0
+[  353.688385] my_thread_fun after dec and test    0
+[  353.688389] my_thread_fun after dec and test    7
+[  353.688391] my_thread_fun after dec and test    0
+[  353.688397] my_thread_fun after add neg    0
+[  353.688398] my_thread_fun after dec and test    14
+[  353.688404] my_thread_fun after add neg     14
+[  353.688406] my_thread_fun after add neg    0
+[  353.688411] my_thread_fun after add neg     22
+[  353.688412] my_thread_fun after inc and test     0
+[  353.688416] my_thread_fun after inc and test      23
+[  353.688418] my_thread_fun after inc and test     0
+[  353.688422] my_thread_fun after inc and test      24
+[  353.688424] *****************ATOMIC BIT WSIE OPERATORS *************
+[  353.688429] SET BIT      1
+[  353.688430] *****************ATOMIC BIT WSIE OPERATORS *************
+[  353.688435] SET BIT      1
+[  353.688437] SET BIT      3
+[  353.688442] SET BIT      7
+[  353.688445] SET BIT      3
+[  353.688449] CLEAR BIT      5
+[  353.688452] SET BIT      7
+[  353.688457] CHANGE BIT      4
+[  353.688459] CLEAR BIT      5
+[  353.688464] TEST AND SET    0
+[  353.688467] CHANGE BIT      4
+[  353.688472] TEST AND SET    0
+[  353.688473] TEST AND SET      6
+[  353.688477] TEST AND CLEAR    1
+[  353.688479] TEST AND SET      6
+[  353.688484] TEST AND CLEAR      4
+[  353.688486] TEST AND CLEAR    1
+[  353.688491] TEST AND CLEAR      4
+[  353.688492] TEST BIT    1
+[  353.688498] TEST BIT    1
+[  354.712311] my_thread_fun after inc  25
+[  354.712311] my_thread_fun after inc  26
+[  354.712314] my_thread_fun after add   40
+[  354.712315] my_thread_fun after add   54
+[  354.712316] my_thread_fun after sub   52
+[  354.712317] my_thread_fun after sub   50
+[  354.712317] my_thread_fun after dec   49
+[  354.712318] my_thread_fun after set    14
+[  354.712319] my_thread_fun after dec   13
+[  354.712319] my_thread_fun after sub and test    0
+[  354.712321] my_thread_fun after set    14
+[  354.712321] my_thread_fun after dec and test    0
+[  354.712322] my_thread_fun after dec and test    13
+[  354.712323] my_thread_fun after sub and test    0
+[  354.712323] my_thread_fun after add neg    0
+[  354.712324] my_thread_fun after add neg     18
+[  354.712325] my_thread_fun after dec and test    0
+[  354.712326] my_thread_fun after inc and test     0
+[  354.712327] my_thread_fun after inc and test      18
+[  354.712327] my_thread_fun after dec and test    18
+[  354.712328] *****************ATOMIC BIT WSIE OPERATORS *************
+[  354.712329] my_thread_fun after add neg    0
+[  354.712330] SET BIT      1
+[  354.712331] my_thread_fun after add neg     26
+[  354.712331] SET BIT      3
+[  354.712332] SET BIT      7
+[  354.712332] my_thread_fun after inc and test     0
+[  354.712333] CLEAR BIT      5
+[  354.712334] my_thread_fun after inc and test      27
+[  354.712334] CHANGE BIT      4
+[  354.712335] TEST AND SET    0
+[  354.712335] *****************ATOMIC BIT WSIE OPERATORS *************
+[  354.712337] TEST AND SET      6
+[  354.712336] SET BIT      1
+[  354.712338] SET BIT      3
+[  354.712338] TEST AND CLEAR    1
+[  354.712339] TEST AND CLEAR      4
+[  354.712339] SET BIT      7
+[  354.712340] CLEAR BIT      5
+[  354.712340] TEST BIT    1
+[  354.712341] CHANGE BIT      4
+[  354.712342] TEST AND SET    0
+[  354.712343] TEST AND SET      6
+[  354.712344] TEST AND CLEAR    1
+[  354.712345] TEST AND CLEAR      4
+[  354.712345] TEST BIT    1
+[  355.736408] my_thread_fun after inc  28
+[  355.736408] my_thread_fun after inc  29
+[  355.736425] my_thread_fun after add   43
+[  355.736431] my_thread_fun after add   57
+[  355.736436] my_thread_fun after sub   55
+[  355.736443] my_thread_fun after sub   53
+[  355.736446] my_thread_fun after dec   52
+[  355.736451] my_thread_fun after dec   51
+[  355.736455] my_thread_fun after set    14
+[  355.736460] my_thread_fun after set    14
+[  355.736465] my_thread_fun after sub and test    0
+[  355.736469] my_thread_fun after sub and test    0
+[  355.736474] my_thread_fun after dec and test    0
+[  355.736479] my_thread_fun after dec and test    0
+[  355.736484] my_thread_fun after dec and test    6
+[  355.736485] my_thread_fun after dec and test    6
+[  355.736491] my_thread_fun after add neg    0
+[  355.736492] my_thread_fun after add neg    0
+[  355.736497] my_thread_fun after add neg     22
+[  355.736498] my_thread_fun after add neg     22
+[  355.736504] my_thread_fun after inc and test     0
+[  355.736504] my_thread_fun after inc and test     0
+[  355.736510] my_thread_fun after inc and test      24
+[  355.736511] my_thread_fun after inc and test      24
+[  355.736516] *****************ATOMIC BIT WSIE OPERATORS *************
+[  355.736517] *****************ATOMIC BIT WSIE OPERATORS *************
+[  355.736522] SET BIT      1
+[  355.736523] SET BIT      1
+[  355.736529] SET BIT      3
+[  355.736532] SET BIT      3
+[  355.736538] SET BIT      7
+[  355.736540] SET BIT      7
+[  355.736545] CLEAR BIT      5
+[  355.736546] CLEAR BIT      5
+[  355.736551] CHANGE BIT      4
+[  355.736552] CHANGE BIT      4
+[  355.736558] TEST AND SET    0
+[  355.736559] TEST AND SET    0
+[  355.736564] TEST AND SET      6
+[  355.736565] TEST AND SET      6
+[  355.736570] TEST AND CLEAR    1
+[  355.736571] TEST AND CLEAR    1
+[  355.736576] TEST AND CLEAR      4
+[  355.736577] TEST AND CLEAR      4
+[  355.736582] TEST BIT    1
+[  355.736583] TEST BIT    1
+[  356.760309] my_thread_fun after inc  25
+[  356.760324] my_thread_fun after add   39
+[  356.760329] my_thread_fun after sub   37
+[  356.760333] my_thread_fun after dec   36
+[  356.760337] my_thread_fun after set    14
+[  356.760341] my_thread_fun after sub and test    0
+[  356.760345] my_thread_fun after dec and test    0
+[  356.760349] my_thread_fun after dec and test    10
+[  356.760354] my_thread_fun after add neg    0
+[  356.760358] my_thread_fun after add neg     18
+[  356.760362] my_thread_fun after inc and test     0
+[  356.760367] my_thread_fun after inc and test      19
+[  356.760371] *****************ATOMIC BIT WSIE OPERATORS *************
+[  356.760375] SET BIT      1
+[  356.760381] SET BIT      3
+[  356.760386] SET BIT      7
+[  356.760389] CLEAR BIT      5
+[  356.760393] CHANGE BIT      4
+[  356.760397] TEST AND SET    0
+[  356.760401] TEST AND SET      6
+[  356.760406] TEST AND CLEAR    1
+[  356.760410] TEST AND CLEAR      4
+[  356.760414] TEST BIT    1
+[  356.764423] my_thread_fun after inc  20
+[  356.764442] my_thread_fun after add   34
+[  356.764448] my_thread_fun after sub   32
+[  356.764453] my_thread_fun after dec   31
+[  356.764457] my_thread_fun after set    14
+[  356.764463] my_thread_fun after sub and test    0
+[  356.764480] my_thread_fun after dec and test    0
+[  356.764485] my_thread_fun after dec and test    10
+[  356.764490] my_thread_fun after add neg    0
+[  356.764503] my_thread_fun after add neg     18
+[  356.764516] my_thread_fun after inc and test     0
+[  356.764529] my_thread_fun after inc and test      19
+[  356.764555] *****************ATOMIC BIT WSIE OPERATORS *************
+[  356.764568] SET BIT      1
+[  356.764581] SET BIT      3
+[  356.764593] SET BIT      7
+[  356.764604] CLEAR BIT      5
+[  356.764616] CHANGE BIT      4
+[  356.764629] TEST AND SET    0
+[  356.764641] TEST AND SET      6
+[  356.764654] TEST AND CLEAR    1
+[  356.764668] TEST AND CLEAR      4
+[  356.764681] TEST BIT    1
+[  357.784448] my_thread_fun after inc  20
+[  357.784451] my_thread_fun after inc  21
+[  357.784461] my_thread_fun after add   35
+[  357.784463] my_thread_fun after add   49
+[  357.784468] my_thread_fun after sub   47
+[  357.784472] my_thread_fun after sub   45
+[  357.784477] my_thread_fun after dec   44
+[  357.784478] my_thread_fun after dec   43
+[  357.784483] my_thread_fun after set    14
+[  357.784485] my_thread_fun after set    14
+[  357.784490] my_thread_fun after sub and test    0
+[  357.784491] my_thread_fun after sub and test    0
+[  357.784497] my_thread_fun after dec and test    0
+[  357.784499] my_thread_fun after dec and test    0
+[  357.784505] my_thread_fun after dec and test    6
+[  357.784506] my_thread_fun after dec and test    6
+[  357.784511] my_thread_fun after add neg    0
+[  357.784512] my_thread_fun after add neg    0
+[  357.784517] my_thread_fun after add neg     22
+[  357.784519] my_thread_fun after add neg     22
+[  357.784524] my_thread_fun after inc and test     0
+[  357.784527] my_thread_fun after inc and test     0
+[  357.784532] my_thread_fun after inc and test      24
+[  357.784534] my_thread_fun after inc and test      24
+[  357.784540] *****************ATOMIC BIT WSIE OPERATORS *************
+[  357.784542] *****************ATOMIC BIT WSIE OPERATORS *************
+[  357.784547] SET BIT      1
+[  357.784549] SET BIT      1
+[  357.784554] SET BIT      3
+[  357.784555] SET BIT      3
+[  357.784560] SET BIT      7
+[  357.784562] SET BIT      7
+[  357.784567] CLEAR BIT      5
+[  357.784568] CLEAR BIT      5
+[  357.784572] CHANGE BIT      4
+[  357.784574] CHANGE BIT      4
+[  357.784579] TEST AND SET    0
+[  357.784582] TEST AND SET    0
+[  357.784587] TEST AND SET      6
+[  357.784589] TEST AND SET      6
+[  357.784593] TEST AND CLEAR    1
+[  357.784595] TEST AND CLEAR    1
+[  357.784600] TEST AND CLEAR      4
+[  357.784602] TEST AND CLEAR      4
+[  357.784607] TEST BIT    1
+[  357.784609] TEST BIT    1
+[  358.808474] my_thread_fun after inc  25
+[  358.808482] my_thread_fun after inc  26
+[  358.808491] my_thread_fun after add   40
+[  358.808497] my_thread_fun after sub   38
+[  358.808502] my_thread_fun after add   52
+[  358.808503] my_thread_fun after dec   51
+[  358.808508] my_thread_fun after set    14
+[  358.808511] my_thread_fun after sub   12
+[  358.808515] my_thread_fun after sub and test    0
+[  358.808519] my_thread_fun after dec   8
+[  358.808524] my_thread_fun after dec and test    0
+[  358.808525] my_thread_fun after set    14
+[  358.808531] my_thread_fun after sub and test    0
+[  358.808532] my_thread_fun after dec and test    11
+[  358.808537] my_thread_fun after add neg    0
+[  358.808539] my_thread_fun after dec and test    0
+[  358.808544] my_thread_fun after add neg     18
+[  358.808546] my_thread_fun after dec and test    18
+[  358.808551] my_thread_fun after inc and test     0
+[  358.808553] my_thread_fun after add neg    0
+[  358.808558] my_thread_fun after add neg     27
+[  358.808559] my_thread_fun after inc and test      27
+[  358.808565] *****************ATOMIC BIT WSIE OPERATORS *************
+[  358.808567] my_thread_fun after inc and test     0
+[  358.808573] SET BIT      1
+[  358.808574] my_thread_fun after inc and test      28
+[  358.808579] *****************ATOMIC BIT WSIE OPERATORS *************
+[  358.808582] SET BIT      3
+[  358.808587] SET BIT      7
+[  358.808588] SET BIT      1
+[  358.808593] CLEAR BIT      5
+[  358.808598] SET BIT      3
+[  358.808601] CHANGE BIT      4
+[  358.808605] SET BIT      7
+[  358.808608] TEST AND SET    0
+[  358.808614] CLEAR BIT      5
+[  358.808615] TEST AND SET      6
+[  358.808619] TEST AND CLEAR    1
+[  358.808621] CHANGE BIT      4
+[  358.808626] TEST AND CLEAR      4
+[  358.808628] TEST AND SET    0
+[  358.808633] TEST BIT    1
+[  358.808636] TEST AND SET      6
+[  358.808642] TEST AND CLEAR    1
+[  358.808647] TEST AND CLEAR      4
+[  358.808651] TEST BIT    1
+[  359.832507] my_thread_fun after inc  29
+[  359.832508] my_thread_fun after inc  30
+[  359.832521] my_thread_fun after add   44
+[  359.832524] my_thread_fun after add   58
+[  359.832529] my_thread_fun after sub   56
+[  359.832534] my_thread_fun after sub   54
+[  359.832536] my_thread_fun after dec   53
+[  359.832540] my_thread_fun after set    14
+[  359.832546] my_thread_fun after dec   13
+[  359.832547] my_thread_fun after sub and test    0
+[  359.832552] my_thread_fun after dec and test    0
+[  359.832557] my_thread_fun after set    14
+[  359.832559] my_thread_fun after dec and test    14
+[  359.832564] my_thread_fun after add neg    0
+[  359.832568] my_thread_fun after sub and test    0
+[  359.832570] my_thread_fun after add neg     19
+[  359.832576] my_thread_fun after inc and test     0
+[  359.832578] my_thread_fun after dec and test    0
+[  359.832583] my_thread_fun after dec and test    19
+[  359.832584] my_thread_fun after inc and test      19
+[  359.832590] my_thread_fun after add neg    0
+[  359.832591] *****************ATOMIC BIT WSIE OPERATORS *************
+[  359.832597] my_thread_fun after add neg     27
+[  359.832596] SET BIT      1
+[  359.832603] my_thread_fun after inc and test     0
+[  359.832607] SET BIT      3
+[  359.832611] my_thread_fun after inc and test      28
+[  359.832614] SET BIT      7
+[  359.832620] *****************ATOMIC BIT WSIE OPERATORS *************
+[  359.832622] CLEAR BIT      5
+[  359.832627] SET BIT      1
+[  359.832629] CHANGE BIT      4
+[  359.832634] TEST AND SET    0
+[  359.832635] SET BIT      3
+[  359.832641] TEST AND SET      6
+[  359.832643] SET BIT      7
+[  359.832647] TEST AND CLEAR    1
+[  359.832651] CLEAR BIT      5
+[  359.832656] CHANGE BIT      4
+[  359.832657] TEST AND CLEAR      4
+[  359.832662] TEST BIT    1
+[  359.832663] TEST AND SET    0
+[  359.832668] TEST AND SET      6
+[  359.832673] TEST AND CLEAR    1
+[  359.832677] TEST AND CLEAR      4
+[  359.832681] TEST BIT    1
+[  360.856529] my_thread_fun after inc  29
+[  360.856529] my_thread_fun after inc  30
+[  360.856541] my_thread_fun after add   44
+[  360.856548] my_thread_fun after add   58
+[  360.856551] my_thread_fun after sub   56
+[  360.856556] my_thread_fun after sub   54
+[  360.856558] my_thread_fun after dec   53
+[  360.856563] my_thread_fun after dec   52
+[  360.856564] my_thread_fun after set    14
+[  360.856570] my_thread_fun after set    14
+[  360.856572] my_thread_fun after sub and test    0
+[  360.856577] my_thread_fun after sub and test    0
+[  360.856581] my_thread_fun after dec and test    0
+[  360.856586] my_thread_fun after dec and test    0
+[  360.856587] my_thread_fun after dec and test    6
+[  360.856593] my_thread_fun after dec and test    6
+[  360.856596] my_thread_fun after add neg    0
+[  360.856601] my_thread_fun after add neg    0
+[  360.856603] my_thread_fun after add neg     22
+[  360.856608] my_thread_fun after inc and test     0
+[  360.856610] my_thread_fun after add neg     23
+[  360.856615] my_thread_fun after inc and test     0
+[  360.856616] my_thread_fun after inc and test      24
+[  360.856621] *****************ATOMIC BIT WSIE OPERATORS *************
+[  360.856624] my_thread_fun after inc and test      24
+[  360.856629] SET BIT      1
+[  360.856631] *****************ATOMIC BIT WSIE OPERATORS *************
+[  360.856636] SET BIT      1
+[  360.856637] SET BIT      3
+[  360.856642] SET BIT      3
+[  360.856644] SET BIT      7
+[  360.856650] SET BIT      7
+[  360.856651] CLEAR BIT      5
+[  360.856655] CHANGE BIT      4
+[  360.856656] CLEAR BIT      5
+[  360.856661] CHANGE BIT      4
+[  360.856662] TEST AND SET    0
+[  360.856668] TEST AND SET    0
+[  360.856671] TEST AND SET      6
+[  360.856676] TEST AND SET      6
+[  360.856678] TEST AND CLEAR    1
+[  360.856683] TEST AND CLEAR    1
+[  360.856685] TEST AND CLEAR      4
+[  360.856690] TEST AND CLEAR      4
+[  360.856692] TEST BIT    1
+[  360.856697] TEST BIT    1
+
 */
 
 
