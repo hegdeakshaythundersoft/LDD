@@ -556,4 +556,234 @@ Reading Value from Driver
 Value is 15
 Closing Driver
 akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ 
+
+
+
+/*
+
+
+	**********with fd=-10 , a negetive value***********************8
+
+
+MODPOST /home/akshay/Pictures/Module.symvers
+  CC [M]  /home/akshay/Pictures/ioctll.mod.o
+  LD [M]  /home/akshay/Pictures/ioctll.ko
+make[1]: Leaving directory '/usr/src/linux-headers-5.11.0-34-generic'
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ sudo insmod ioctll.ko
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ lsmod | head
+Module                  Size  Used by
+ioctll                 16384  0
+rfcomm                 81920  4
+ccm                    20480  6
+cmac                   16384  5
+algif_hash             16384  2
+algif_skcipher         16384  2
+af_alg                 28672  10 algif_hash,algif_skcipher
+bnep                   24576  2
+snd_hda_codec_hdmi     61440  1
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ sudo chmod 777 /dev/my_Ioctl_driver 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[8752] - Opening device my_cdrv
+
+
+Device could not be opened
+
+
+
+
+
+
+
+
+*******************close(fd) before opening**********************
+
+
+
+
+
+ MODPOST /home/akshay/Pictures/Module.symvers
+  CC [M]  /home/akshay/Pictures/ioctll.mod.o
+  LD [M]  /home/akshay/Pictures/ioctll.ko
+make[1]: Leaving directory '/usr/src/linux-headers-5.11.0-34-generic'
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ sudo insmod ioctll.ko
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ lsmod | head
+Module                  Size  Used by
+ioctll                 16384  0
+rfcomm                 81920  4
+ccm                    20480  6
+cmac                   16384  5
+algif_hash             16384  2
+algif_skcipher         16384  2
+af_alg                 28672  10 algif_hash,algif_skcipher
+bnep                   24576  2
+snd_hda_codec_hdmi     61440  1
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ sudo chmod 777 /dev/my_Ioctl_driver 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[10398] - Opening device my_cdrv
+Device opened with ID [3]
+Enter the Value to send
+15
+Writing Value to Driver
+Reading Value from Driver
+Value is 15
+Closing Driver
+
+
+*********************** fd=0 initialized*************************
+
+
+
+
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[10524] - Opening device my_cdrv
+Device opened with ID [0]
+Enter the Value to send
+16
+Writing Value to Driver
+Reading Value from Driver
+Value is 22076
+Closing Driver
+
+
+
+*****************************fd=1 initialized***********************************8
+
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[10680] - Opening device my_cdrv
+Device opened with ID [1]
+Enter the Value to send
+10
+Writing Value to Driver
+Reading Value from Driver
+Value is 21978
+Closing Driver
+
+
+
+**************************fd uninitialized garbage value*********************
+
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[10810] - Opening device my_cdrv
+Device opened with ID [32767]
+Enter the Value to send
+4
+Writing Value to Driver
+Reading Value from Driver
+Value is 22034
+
+
+******************fd= NULL**********************************
+
+
+	akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+ioctll_test.c: In function ‘main’:
+ioctll_test.c:22:4: warning: assignment to ‘int’ from ‘void *’ makes integer from pointer without a cast [-Wint-conversion]
+   22 |  fd=NULL;
+      |    ^
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[10962] - Opening device my_cdrv
+Device opened with ID [0]
+Enter the Value to send
+9
+Writing Value to Driver
+Reading Value from Driver
+Value is 22086
+Closing Driver
+
+
+
+*************************** fd not involved*************
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[11108] - Opening device my_cdrv
+Enter the Value to send
+8
+Writing Value to Driver
+Reading Value from Driver
+Value is 21966
+Closing Driver
+
+
+
+*************** closed (fd) after open************
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[11460] - Opening device my_cdrv
+Enter the Value to send
+10
+Writing Value to Driver
+Reading Value from Driver
+Value is 21966
+Closing Driver
+
+
+
+**********close 2  times*****************************
+
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gedit ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ gcc ioctll_test.c 
+akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ ./a.out
+[11500] - Opening device my_cdrv
+Enter the Value to send
+45
+Writing Value to Driver
+Reading Value from Driver
+Value is 21868
+Closing Driver
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
