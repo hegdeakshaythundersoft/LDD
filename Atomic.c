@@ -130,7 +130,7 @@ static int __init my_simpledriver_init(void)
 		
 	}
 
-	char_thread1 = kthread_run(my_thread_fun,NULL,"my char thread1");
+	char_thread1 = kthread_run(my_thread_fun1,NULL,"my char thread1");
 	if(char_thread1)
 	{
 		printk(KERN_INFO" create the thread1");
@@ -865,6 +865,104 @@ akshay@akshay-ThinkPad-L570-W10DG:~/linux_device_driver$ dmesg
 [  360.856690] TEST AND CLEAR      4
 [  360.856692] TEST BIT    1
 [  360.856697] TEST BIT    1
+
+
+
+
+
+
+
+
+
+	*************two threads using different thread fun****************************
+
+
+
+
+[ 1103.531939] My sample driver start
+[ 1103.531985]  create the thread
+[ 1103.531987] my_thread_fun after inc  1
+[ 1103.531989] my_thread_fun after add   15
+[ 1103.531990] my_thread_fun after sub   13
+[ 1103.531991] my_thread_fun after dec   12
+[ 1103.531993] my_thread_fun after set    14
+[ 1103.531995] my_thread_fun after sub and test    0
+[ 1103.531997] my_thread_fun after dec and test    0
+[ 1103.531998] my_thread_fun after dec and test    10
+[ 1103.531999] my_thread_fun after add neg    0
+[ 1103.532000] my_thread_fun after add neg     18
+[ 1103.532001] my_thread_fun after inc and test     0
+[ 1103.532002] my_thread_fun after inc and test      19
+[ 1103.532004] *****************ATOMIC BIT WSIE OPERATORS *************
+[ 1103.532004] SET BIT      1
+[ 1103.532006] SET BIT      3
+[ 1103.532007] SET BIT      7
+[ 1103.532008] CLEAR BIT      5
+[ 1103.532009] CHANGE BIT      4
+[ 1103.532010] TEST AND SET    0
+[ 1103.532012] TEST AND SET      6
+[ 1103.532013] TEST AND CLEAR    1
+[ 1103.532015] TEST AND CLEAR      4
+[ 1103.532016]  create the thread1
+[ 1103.532017] TEST BIT    1
+[ 1103.532017] my_thread_fun2  20
+[ 1104.567257] my_thread_fun2  21
+[ 1104.567257] my_thread_fun after inc  22
+[ 1104.567272] my_thread_fun after add   36
+[ 1104.567291] my_thread_fun after sub   34
+[ 1104.567298] my_thread_fun after dec   33
+[ 1104.567304] my_thread_fun after set    14
+[ 1104.567311] my_thread_fun after sub and test    0
+[ 1104.567318] my_thread_fun after dec and test    0
+[ 1104.567325] my_thread_fun after dec and test    10
+[ 1104.567332] my_thread_fun after add neg    0
+[ 1104.567338] my_thread_fun after add neg     18
+[ 1104.567345] my_thread_fun after inc and test     0
+[ 1104.567352] my_thread_fun after inc and test      19
+[ 1104.567359] *****************ATOMIC BIT WSIE OPERATORS *************
+[ 1104.567363] SET BIT      1
+[ 1104.567374] SET BIT      3
+[ 1104.567380] SET BIT      7
+[ 1104.567386] CLEAR BIT      5
+[ 1104.567392] CHANGE BIT      4
+[ 1104.567398] TEST AND SET    0
+[ 1104.567405] TEST AND SET      6
+[ 1104.567411] TEST AND CLEAR    1
+[ 1104.567417] TEST AND CLEAR      4
+[ 1104.567424] TEST BIT    1
+[ 1105.591372] my_thread_fun2  20
+[ 1105.591372] my_thread_fun after inc  21
+[ 1105.591387] my_thread_fun after add   35
+[ 1105.591392] my_thread_fun after sub   33
+[ 1105.591396] my_thread_fun after dec   32
+[ 1105.591401] my_thread_fun after set    14
+[ 1105.591405] my_thread_fun after sub and test    0
+[ 1105.591411] my_thread_fun after dec and test    0
+[ 1105.591415] my_thread_fun after dec and test    10
+[ 1105.591430] my_thread_fun after add neg    0
+[ 1105.591439] my_thread_fun after add neg     18
+[ 1105.591446] my_thread_fun after inc and test     0
+[ 1105.591453] my_thread_fun after inc and test      19
+[ 1105.591460] *****************ATOMIC BIT WSIE OPERATORS *************
+[ 1105.591465] SET BIT      1
+[ 1105.591475] SET BIT      3
+[ 1105.591481] SET BIT      7
+[ 1105.591487] CLEAR BIT      5
+[ 1105.591493] CHANGE BIT      4
+[ 1105.591500] TEST AND SET    0
+[ 1105.591506] TEST AND SET      6
+[ 1105.591512] TEST AND CLEAR    1
+[ 1105.591518] TEST AND CLEAR      4
+[ 1105.591525] TEST BIT    1
+
+
+
+
+
+
+
+
+
 
 */
 
